@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="Elp.Application/Elp.Application.csproj" />
+  <Project Path="Elp.Domain/Elp.Domain.csproj" />
+  <Project Path="Elp.Infrastructure/Elp.Infrastructure.csproj" />
+  <Project Path="Elp.UnitTests/Elp.UnitTests.csproj" />
+  <Project Path="Elp.Api/Elp.Api.csproj" />
+</Solution>

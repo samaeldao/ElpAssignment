@@ -1,0 +1,358 @@
+{
+  "info": {
+    "_postman_id": "e654c379-6098-4e8a-a4b0-4fe4a10266ae",
+    "name": "Elp.Api",
+    "description": "Complete test suite including fully localized Codebooks, CRUD, Optimistic Concurrency (ETags), Search, and Validation.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "14023418"
+  },
+  "item": [
+    {
+      "name": "1. Codebooks (Multi-Language)",
+      "item": [
+        {
+          "name": "GET All Codebooks (Czech)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept-Language",
+                "value": "cs-CZ"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/ciselniky",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "ciselniky"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET All Codebooks (English)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept-Language",
+                "value": "en-US"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/ciselniky",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "ciselniky"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Status Items (Czech)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept-Language",
+                "value": "cs"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/ciselniky/StavPosudku/polozky",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "ciselniky",
+                "StavPosudku",
+                "polozky"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "2. Certificates (CRUD, Concurrency & History)",
+      "item": [
+        {
+          "name": "1. GET Seeded Certificate (Look for ETag Header!)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/posudky/ridicskeOpravneni/a1111111-1111-1111-1111-111111111111",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "posudky",
+                "ridicskeOpravneni",
+                "a1111111-1111-1111-1111-111111111111"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2. POST Check Authorization",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"krzpId\": \"11111111-1111-1111-1111-111111111111\",\n  \"rid\": \"ABC-123-456\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/posudky/ridicskeOpravneni/zalozeni/opravneni",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "posudky",
+                "ridicskeOpravneni",
+                "zalozeni",
+                "opravneni"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "3. POST Create New",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rid\": \"NEW-777-888\",\n  \"krzpId\": \"11111111-1111-1111-1111-111111111111\",\n  \"datumVystaveni\": \"2024-05-01T08:00:00Z\",\n  \"stavPosudku\": {\n      \"kod\": \"VYDANO\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/posudky/ridicskeOpravneni",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "posudky",
+                "ridicskeOpravneni"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4. POST Create (Validation Error - EN)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "en-US"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rid\": \"\", \n  \"krzpId\": null,\n  \"datumVystaveni\": \"2050-05-01T08:00:00Z\",\n  \"stavPosudku\": {\n      \"kod\": \"\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/posudky/ridicskeOpravneni",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "posudky",
+                "ridicskeOpravneni"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "5. PATCH Invalidate (Success - Requires Real ETag)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "If-Match",
+                "value": "\"PASTE_ETAG_FROM_GET_REQUEST_HERE\"",
+                "description": "Copy the ETag from the GET response headers and paste it here"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/posudky/ridicskeOpravneni/a1111111-1111-1111-1111-111111111111/zneplatnit",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "posudky",
+                "ridicskeOpravneni",
+                "a1111111-1111-1111-1111-111111111111",
+                "zneplatnit"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "6. PATCH Invalidate (412 Concurrency Error)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "If-Match",
+                "value": "\"AAAAAAAAAAA=\"",
+                "description": "Fake ETag to force an Entity Framework DbUpdateConcurrencyException"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/posudky/ridicskeOpravneni/a1111111-1111-1111-1111-111111111111/zneplatnit",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "posudky",
+                "ridicskeOpravneni",
+                "a1111111-1111-1111-1111-111111111111",
+                "zneplatnit"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "7. GET History",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/posudky/ridicskeOpravneni/a1111111-1111-1111-1111-111111111111/historie",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "posudky",
+                "ridicskeOpravneni",
+                "a1111111-1111-1111-1111-111111111111",
+                "historie"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "3. Search Engine",
+      "item": [
+        {
+          "name": "Search All (Paginated)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stranka\": 1,\n  \"velikostStranky\": 10\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/posudky/ridicskeOpravneni/vyhledat",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "posudky",
+                "ridicskeOpravneni",
+                "vyhledat"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search by Doctor & Status",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"krzpId\": \"11111111-1111-1111-1111-111111111111\",\n  \"stavPosudku\": \"VYDANO\",\n  \"stranka\": 1,\n  \"velikostStranky\": 10\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/posudky/ridicskeOpravneni/vyhledat",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "posudky",
+                "ridicskeOpravneni",
+                "vyhledat"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5120"
+    }
+  ]
+}
