@@ -59,17 +59,17 @@
           "response": []
         },
         {
-          "name": "GET Status Items (Czech)",
+          "name": "GET Status Items (English)",
           "request": {
             "method": "GET",
             "header": [
               {
                 "key": "Accept-Language",
-                "value": "cs"
+                "value": "en-US"
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/api/v2/ciselniky/StavPosudku/polozky",
+              "raw": "{{baseUrl}}/api/v2/ciselniky/stav_posudku/polozky",
               "host": [
                 "{{baseUrl}}"
               ],
@@ -77,7 +77,7 @@
                 "api",
                 "v2",
                 "ciselniky",
-                "StavPosudku",
+                "stav_posudku",
                 "polozky"
               ]
             }
@@ -153,7 +153,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"rid\": \"NEW-777-888\",\n  \"krzpId\": \"11111111-1111-1111-1111-111111111111\",\n  \"datumVystaveni\": \"2024-05-01T08:00:00Z\",\n  \"stavPosudku\": {\n      \"kod\": \"VYDANO\"\n  }\n}"
+              "raw": "{\n  \"rid\": \"NEW-777-888\",\n  \"krzpId\": \"11111111-1111-1111-1111-111111111111\",\n  \"datumVystaveni\": \"2024-05-01T08:00:00Z\",\n  \"stavPosudku\": {\n      \"kod\": \"stav_posudku_2\"\n  }\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/api/v2/posudky/ridicskeOpravneni",
