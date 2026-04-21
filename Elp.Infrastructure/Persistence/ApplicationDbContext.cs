@@ -90,9 +90,9 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             new CodebookItem { CodebookCode = "seznam_skupin_ro", DescriptionCz = "skupina T", Code = "T", DescriptionEn = "Group T", IsActive = true },
             new CodebookItem { CodebookCode = "seznam_skupin_ro", DescriptionCz = "skupina A2", Code = "A2", DescriptionEn = "Group A2", IsActive = true },
             new CodebookItem { CodebookCode = "seznam_skupin_ro", DescriptionCz = "skupina B1", Code = "B1", DescriptionEn = "Group B1", IsActive = true },
-            new CodebookItem { CodebookCode = "seznam_skupin_ro", DescriptionCz = "skupina A1", Code = "A1", DDescriptionEn = "Group A1", IsActive = true },
+            new CodebookItem { CodebookCode = "seznam_skupin_ro", DescriptionCz = "skupina A1", Code = "A1", DescriptionEn = "Group A1", IsActive = true },
 
-new CodebookItem { CodebookCode = "seznam_harmonizovane_kody_ro", Code = "43.01", DescriptionCz = "43.01 Výška sedadla řidiče umožňující normální výhled a v normální vzdálenosti od  volantu a pedálů", DescriptionEn = "43.01 Driver's seat height allowing normal view and at a normal distance from the steering wheel and pedals", IsActive = true },
+            new CodebookItem { CodebookCode = "seznam_harmonizovane_kody_ro", Code = "43.01", DescriptionCz = "43.01 Výška sedadla řidiče umožňující normální výhled a v normální vzdálenosti od  volantu a pedálů", DescriptionEn = "43.01 Driver's seat height allowing normal view and at a normal distance from the steering wheel and pedals", IsActive = true },
             new CodebookItem { CodebookCode = "seznam_harmonizovane_kody_ro", Code = "10.02", DescriptionCz = "10.02 Automatická převodovka", DescriptionEn = "10.02 Automatic transmission", IsActive = true },
             new CodebookItem { CodebookCode = "seznam_harmonizovane_kody_ro", Code = "10.04", DescriptionCz = "10.04 Přizpůsobené ústrojí ovládání převodovky", DescriptionEn = "10.04 Adapted transmission control mechanism", IsActive = true },
             new CodebookItem { CodebookCode = "seznam_harmonizovane_kody_ro", Code = "20.07", DescriptionCz = "20.07 Ovládání brzdy s použitím maximální síly ... N [například: 20.07(300 N)]", DescriptionEn = "20.07 Brake operation using a maximum force of ... N [for example: 20.07(300 N)]", IsActive = true },
@@ -160,7 +160,7 @@ new CodebookItem { CodebookCode = "seznam_harmonizovane_kody_ro", Code = "43.01"
                 PersonalId = "ABC-123-456",
                 MedicalProfessionalId = doctorSmithId,
                 IssueDate = new DateTime(2025, 1, 15, 8, 0, 0, DateTimeKind.Utc),
-                StatusCode = "VYDANO",
+                StatusCode = "stav_posudku_1",
             },
             new
             {
@@ -168,7 +168,7 @@ new CodebookItem { CodebookCode = "seznam_harmonizovane_kody_ro", Code = "43.01"
                 PersonalId = "XYZ-987-654",
                 MedicalProfessionalId = doctorSmithId,
                 IssueDate = new DateTime(2026, 2, 10, 9, 30, 0, DateTimeKind.Utc),
-                StatusCode = "ZAMITNUTO",
+                StatusCode = "stav_posudku_3",
             },
             new
             {
@@ -176,7 +176,7 @@ new CodebookItem { CodebookCode = "seznam_harmonizovane_kody_ro", Code = "43.01"
                 PersonalId = "ABC-123-456",
                 MedicalProfessionalId = doctorNovakId,
                 IssueDate = new DateTime(2020, 5, 20, 14, 15, 0, DateTimeKind.Utc),
-                StatusCode = "ZNEPLATNENO",
+                StatusCode = "stav_posudku_2",
             },
             new
             {
@@ -184,7 +184,7 @@ new CodebookItem { CodebookCode = "seznam_harmonizovane_kody_ro", Code = "43.01"
                 PersonalId = "LMN-456-789",
                 MedicalProfessionalId = doctorNovakId,
                 IssueDate = new DateTime(2026, 4, 1, 10, 0, 0, DateTimeKind.Utc),
-                StatusCode = "VYDANO",
+                StatusCode = "stav_posudku_1",
             }
         );
     }

@@ -1,4 +1,4 @@
-﻿using Elp.Api.Models;
+﻿﻿using Elp.Api.Models;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
 using System.Net;
@@ -46,7 +46,7 @@ public class CertificatesControllerIntegrationTests : IClassFixture<WebApplicati
 
         result.Should().NotBeNull();
         result!.Rid.Should().Be("ABC-123-456");
-        result.StavPosudku.Kod.Should().Be("VYDANO");
+        result.StavPosudku.Kod.Should().Be("stav_posudku_1");
 
         response.Headers.ETag.Should().NotBeNull();
         response.Headers.ETag!.Tag.Should().NotBeEmpty();
